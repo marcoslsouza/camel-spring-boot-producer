@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    
+camel:
+  component:
+    rabbitmq:
+      hostname: localhost
+      port-number: 5672
+      username: admin
+      password: admin
+
+rabbitmq:
+  camel:
+    producer:
+      uri: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee&autoDelete=false&guaranteedDeliveries=true&mandatory=true
+      
