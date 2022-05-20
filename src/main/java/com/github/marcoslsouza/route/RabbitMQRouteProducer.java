@@ -28,6 +28,7 @@ public class RabbitMQRouteProducer extends RouteBuilder {
 			.id("idOfQueueHere")
 			.marshal(jsonDataFormat)
 			.log("Message sent. Body: ${body}")
-			.to("{{rabbitmq.camel.producer.uri}}").end();
+			.to("{{rabbitmq.camel.producer.uri}}")
+			.end();
 	}
 }

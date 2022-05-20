@@ -12,7 +12,7 @@ public class DefaultErrorHandlerProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) {
-	
+		
 		log.error("Error trying to send message. {}", exchange.getException().getMessage());
 	}
 }

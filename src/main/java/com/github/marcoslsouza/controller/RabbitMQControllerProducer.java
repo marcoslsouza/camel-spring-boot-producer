@@ -1,6 +1,7 @@
 package com.github.marcoslsouza.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +22,13 @@ public class RabbitMQControllerProducer {
 	}
 	
 	@PostMapping("create")
-	public String createEmployee(@RequestBody EmployeeDTO employee) {
+	public ResponseEntity<String> createEmployee(@RequestBody EmployeeDTO employee) {
 		
-		this.rabbitMQServiceProducer.createEmployee(employee);
-		return "Employee data sent to queue";
+		try {
+			this.rabbitMQServiceProducer.createEmployee(employee);
+			return ResponseEntity.ok("Employee data sent to queue");
+		} catch(Exception ex) {
+			return ResponseEntity.badRequest().body("Failed to deliver message");
+		}
 	}
 }

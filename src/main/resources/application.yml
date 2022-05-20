@@ -12,6 +12,8 @@ camel:
       port-number: 5672
       username: admin
       password: admin
+  springboot:
+    main-run-controller: true
 
 rabbitmq:
   camel:
