@@ -17,7 +17,7 @@ public class RabbitMQServiceProducer {
 	
 	public Object createEmployee(EmployeeDTO emp) throws InterruptedException, ExecutionException {
 		
-		CompletableFuture async = this.producerTemplate.asyncSendBody(this.producerTemplate.getDefaultEndpoint(), emp);
+		CompletableFuture<Object> async = this.producerTemplate.asyncSendBody(this.producerTemplate.getDefaultEndpoint(), emp);
 		return async.get();
 	}
 }
