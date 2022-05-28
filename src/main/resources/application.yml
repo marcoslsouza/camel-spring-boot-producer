@@ -18,5 +18,4 @@ camel:
 rabbitmq:
   camel:
     producer:
-      uri: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee&autoDelete=false&guaranteedDeliveries=true&mandatory=true
-      
+      uri: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee&autoDelete=false&guaranteedDeliveries=true&mandatory=true  
