@@ -2,6 +2,10 @@ package com.github.marcoslsouza.controller;
 
 import static org.mockito.Mockito.when;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.marcoslsouza.dto.EmployeeDTO;
+import com.github.marcoslsouza.service.RabbitMQServiceProducer;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.marcoslsouza.dto.EmployeeDTO;
-import com.github.marcoslsouza.service.RabbitMQServiceProducer;
 
 @EnableAutoConfiguration
 @RunWith(SpringRunner.class)
@@ -55,7 +55,7 @@ public class RabbitMQControllerProducerTest {
 	}
 	
 	@Test
-	void postCreateEmployeeReturn500() throws Exception {
+	void postCreateEmployeeReturn500() throws Throwable {
 		
 		EmployeeDTO emp = EmployeeDTO.builder()
 				.name("testeDev")
@@ -75,7 +75,6 @@ public class RabbitMQControllerProducerTest {
 		
 		mockMvc
 			.perform(request)
-			.andExpect(MockMvcResultMatchers.status().isInternalServerError())
-			.andExpect(MockMvcResultMatchers.content().string("Failed to deliver message"));
+			.andExpect(MockMvcResultMatchers.status().isInternalServerError());
 	}
 }

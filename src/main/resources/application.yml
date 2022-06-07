@@ -18,4 +18,6 @@ camel:
 rabbitmq:
   camel:
     producer:
-      uri: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee&autoDelete=false&guaranteedDeliveries=true&mandatory=true  
+      uri: 
+        main: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee-main&routingKey=queue-employee-main&autoDelete=false&guaranteedDeliveries=true&mandatory=true
+#        dead: rabbitmq:ex-employee?connectionFactory=#rabbitConnectionFactory&queue=queue-employee-dead&routingKey=queue-employee-dead&autoDelete=false  

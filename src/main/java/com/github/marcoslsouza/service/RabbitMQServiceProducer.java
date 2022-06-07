@@ -1,13 +1,12 @@
 package com.github.marcoslsouza.service;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+
+import com.github.marcoslsouza.dto.EmployeeDTO;
 
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.stereotype.Service;
-
-import com.github.marcoslsouza.dto.EmployeeDTO;
 
 @Service
 public class RabbitMQServiceProducer {
@@ -15,9 +14,9 @@ public class RabbitMQServiceProducer {
 	@Produce(value = "direct:startQueueEmployee")
 	private ProducerTemplate producerTemplate;
 	
-	public Object createEmployee(EmployeeDTO emp) throws InterruptedException, ExecutionException {
+	public Object createEmployee(EmployeeDTO emp) throws Throwable {
 		
-		CompletableFuture<Object> async = this.producerTemplate.asyncSendBody(this.producerTemplate.getDefaultEndpoint(), emp);
+		CompletableFuture async = this.producerTemplate.asyncSendBody(this.producerTemplate.getDefaultEndpoint(), emp);
 		return async.get();
 	}
 }
